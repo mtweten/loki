@@ -1,13 +1,13 @@
 (import 'dashboard-utils.libsonnet') {
   local index_gateway_pod_matcher = if $._config.meta_monitoring.enabled
-  then 'container=~"loki|index-gateway", pod=~"(index-gateway.*|loki-single-binary)"'
+  then 'container=~"loki|index-gateway", pod=~"((loki-)?index-gateway.*|loki-single-binary)"'
   else 'container="index-gateway"',
   local index_gateway_job_matcher = if $._config.meta_monitoring.enabled
   then '(index-gateway.*|loki-single-binary)'
   else 'index-gateway',
 
   local ingester_pod_matcher = if $._config.meta_monitoring.enabled
-  then 'container=~"loki|ingester", pod=~"(ingester.*|loki-single-binary)"'
+  then 'container=~"loki|ingester", pod=~"((loki-)?ingester.*|loki-single-binary)"'
   else 'container="ingester"',
   local ingester_job_matcher = if $._config.meta_monitoring.enabled
   then '(ingester.+|loki-single-binary)'
